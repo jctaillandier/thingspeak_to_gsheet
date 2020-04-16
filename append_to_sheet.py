@@ -12,7 +12,7 @@ temp_file_name = './tmp_file.csv'
 if os.path.isfile(temp_file_name):
     os.remove(temp_file_name)
 
-file = open('last_date', 'r') 
+file = open('/home/jc/Desktop/wanet/thingspeak_to_gsheet/last_date', 'r') 
 last_date =  file.read() 
 file.close()
 
@@ -28,7 +28,7 @@ wget.download(url, out=f"{temp_file_name}")
 # json_key = json.load(open('wanet-api-sensors.json')) # json credentials you downloaded earlier
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
-credentials = ServiceAccountCredentials.from_json_keyfile_name('./wanet-api-sensors.json',
+credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/jc/Desktop/wanet/thingspeak_to_gsheet//wanet-api-sensors.json',
                         scopes=scope) # get email and key from creds
 
 file = gspread.authorize(credentials) # authenticate with Google
@@ -42,7 +42,7 @@ with open(f'tmp_file.csv', newline='') as csvfile:
             data.append(row[:6])
 
 sheet.append_rows(data)
-print("allo: " + len(data))
-file = open('last_date', 'w') 
+os.remove('tmp_file.csv')
+file = open('/home/jc/Desktop/wanet/thingspeak_to_gsheet/last_date', 'w') 
 file.write(now) 
 
