@@ -43,7 +43,7 @@ def main():
                 data.append(row[:6])
 
     sheet.append_rows(data)
-
+    print("allo: " + len(data))
     file = open('last_date', 'w') 
     file.write(now) 
 
